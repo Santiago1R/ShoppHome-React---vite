@@ -1,6 +1,14 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 const OrderCard = (props) => {
   const { id, title, imageUrl, price, handleDelete } = props;
+  let rendeXMarkIcon;
+  if (handleDelete) {
+    rendeXMarkIcon = (
+      <button onClick={() => handleDelete(id)}>
+        <XMarkIcon className="h-6 w-6 text-black" />
+      </button>
+    );
+  }
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-2">
@@ -15,9 +23,7 @@ const OrderCard = (props) => {
       </div>
       <div className="flex items-center gap-2">
         <p className="text-lg font-medium">{price}</p>
-        <button onClick={() => handleDelete(id)}>
-          <XMarkIcon className="h-6 w-6 text-black" />
-        </button>
+        {rendeXMarkIcon}
       </div>
     </div>
   );
