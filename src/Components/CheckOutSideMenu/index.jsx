@@ -25,6 +25,7 @@ const CheckOutSideMenu = () => {
     };
     context.setOrder([...context.order, orderToAdd]);
     context.setCartProducts([]);
+    context.closeCheckOutSideMenu();
   };
 
   return (
