@@ -11,6 +11,7 @@ const NavBar = () => {
         <li className="font-semibold text-lg">
           <NavLink
             to="/"
+            onClick={() => context.setSearchByCategory("")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             \shopHome/
@@ -18,23 +19,8 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/All"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            all
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/Clothes"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Clothes
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/Electronics"
+            onClick={() => context.setSearchByCategory("electronics")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Electronics
@@ -42,7 +28,8 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/Women"
+            to="/Women's clothing"
+            onClick={() => context.setSearchByCategory("women's clothing")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Women's clothing
@@ -50,7 +37,8 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/Men"
+            to="/Men's clothing"
+            onClick={() => context.setSearchByCategory("men's clothing")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Men's clothing
@@ -59,6 +47,7 @@ const NavBar = () => {
         <li>
           <NavLink
             to="/Jewelery"
+            onClick={() => context.setSearchByCategory("Jewelery")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Jewelery
@@ -92,8 +81,10 @@ const NavBar = () => {
             Sign In
           </NavLink>
         </li>
-        <li className="flex items-center gap-1"><ShoppingBagIcon className="h-6 w-6 text-black" />
-        <div>{context.cartProducts.length}</div></li>
+        <li className="flex items-center gap-1">
+          <ShoppingBagIcon className="h-6 w-6 text-black" />
+          <div>{context.cartProducts.length}</div>
+        </li>
       </ul>
     </nav>
   );
