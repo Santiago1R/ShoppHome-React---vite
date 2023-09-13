@@ -1,5 +1,5 @@
 import { useContext, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ShoppingCardContext } from "../../Context";
 import Layout from "../../Components/Layout";
 const SignIn = () => {
@@ -19,6 +19,13 @@ const SignIn = () => {
     : true;
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
 
+  const handleSignIn = () =>{
+    const stringifiedSignOut = JSON.stringify(false);
+    localStorage.setItem('sign-out', stringifiedSignOut)
+    context.setSingOut(false)
+    // Redirect
+    return <Navigate replace to={'/'}></Navigate>
+  }
   const createAnAccount = () => {
     const formData = new FormData(form.current)
     const data = {
@@ -26,7 +33,12 @@ const SignIn = () => {
       email: formData.get('email'),
       password:formData.get('password')
     }
-    console.log(data)
+    //Create account
+    const striginfiedAccount = JSON.stringify(data)
+    localStorage.setItem('account', striginfiedAccount)
+    context.setAccount(data)
+    //Sign In
+    handleSignIn()
   }
 
   const renderLogIn = () => {
@@ -44,6 +56,7 @@ const SignIn = () => {
           <Link to="/">
             <button
               className="bg-black disabled:bg-black/40 text-white w-full rounded-lg py-3 mt-4 mb-2"
+              onClick={() => handleSignIn()}
               disabled={!hasUserAnAccount}
             >
               log in
